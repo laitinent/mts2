@@ -1,6 +1,7 @@
 package fi.hamk.riksu.mts2;
 
 import android.app.Activity;
+import android.databinding.DataBindingUtil;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -10,26 +11,26 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends Activity {
-    TextView tv;
+import fi.hamk.riksu.mts2.databinding.ActivityMainBinding;
 
+public class MainActivity extends Activity {
+    //TextView tv;
+
+    ActivityMainBinding binding;
     ArrayList<String> lisukkeet = new ArrayList<>();
     ArrayList<String> proteiinit = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        Button button = (Button)this.findViewById(R.id.button);
-        tv = (TextView)this.findViewById(R.id.textView);
+        binding = DataBindingUtil.setContentView(this,R.layout.activity_main);
+        //Button button = (Button)this.findViewById(R.id.button);
+        //tv = (TextView)this.findViewById(R.id.textView);
         creatLists();
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String a = lisukkeet.get((int)(Math.random()*lisukkeet.size()));
-                String b = proteiinit.get((int)(Math.random()*proteiinit.size()));
-                tv.setText(b+" ja "+a);
-            }
+        binding.button.setOnClickListener(view -> {
+            String a = lisukkeet.get((int)(Math.random()*lisukkeet.size()));
+            String b = proteiinit.get((int)(Math.random()*proteiinit.size()));
+            binding.textView.setText(b+" ja "+a);
         });
     }
 
