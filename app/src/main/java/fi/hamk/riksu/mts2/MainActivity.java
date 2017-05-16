@@ -14,7 +14,6 @@ import java.util.List;
 import fi.hamk.riksu.mts2.databinding.ActivityMainBinding;
 
 public class MainActivity extends Activity {
-    //TextView tv;
 
     ActivityMainBinding binding;
     ArrayList<String> lisukkeet = new ArrayList<>();
@@ -24,8 +23,7 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this,R.layout.activity_main);
-        //Button button = (Button)this.findViewById(R.id.button);
-        //tv = (TextView)this.findViewById(R.id.textView);
+
         creatLists();
         binding.button.setOnClickListener(view -> {
             String a = lisukkeet.get((int)(Math.random()*lisukkeet.size()));
